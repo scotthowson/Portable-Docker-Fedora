@@ -1,0 +1,18 @@
+version: '3'
+services:
+  github-desktop:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        BUILD_USER: ${BUILD_USER}
+        BUILD_UID: ${BUILD_UID}
+        BUILD_GID: ${BUILD_GID}
+        NODE_MAJOR: ${NODE_MAJOR}
+    container_name: ${CONTAINER_NAME}
+    hostname: ${HOSTNAME}
+    privileged: true
+    volumes:
+      - "${GIT_REPO}:/workspace:rw"
+    tty: true
+    stdin_open: true
